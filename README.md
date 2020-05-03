@@ -5,6 +5,10 @@ A simple app to learn Chinese radicals. Just lists radicals for now, but the goa
 
 ![alt text](./radicals.png "App Snapshot")
 
+# References
+   * https://en.wikipedia.org/wiki/Radical_(Chinese_characters)
+   * https://www.archchinese.com/traditional_chinese_radicals.html
+   
 # Setup
 
 ## Prerequisites
