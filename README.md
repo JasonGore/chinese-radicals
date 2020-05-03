@@ -3,7 +3,7 @@
 
 ## Prerequisites
 
-A client set up for [React Native development](https://reactnative.dev/docs/environment-setup).
+A client set up for [React Native development](https://reactnative.dev/docs/environment-setup) following **"React Native CLI Quickstart"**.
 
 ## Launching
 
