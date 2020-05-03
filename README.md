@@ -1,4 +1,10 @@
 
+# Overview
+
+A simple app to learn Chinese radicals. Just lists radicals for now, but the goal is to add features such as flashcards and stats tracking.
+
+![alt text](./radicals.png "App Snapshot")
+
 # Setup
 
 ## Prerequisites
