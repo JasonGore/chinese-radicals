@@ -1,21 +1,11 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const cardStyles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
   traditional: {
     backgroundColor: Colors.lighter,
     color: 'blue',

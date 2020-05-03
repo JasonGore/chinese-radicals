@@ -26,25 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { cardStyles } from './Flashcard/Flashcard.styles';
-
-const radicals: Radical[] = require('./data/radicals');
-
-interface Radical {
-  number: number;
-  traditional: string;
-  english: string;
-  pinyin: string;
-  strokeCount: number;
-}
-
-const renderRadicalCard = (radical: Radical) => {
-  return <View style={styles.sectionContainer} key={radical.number}>
-    <Text style={cardStyles.traditional}>{radical.traditional}</Text>
-    <Text style={cardStyles.pinyin}>{radical.pinyin}</Text>
-    <Text style={cardStyles.english}>{radical.english}</Text>
-  </View>
-};
+import { Flashcard } from './Flashcard/Flashcard';
+import { radicals } from './Radicals/Radicals';
 
 const Home = () => {
   return (
@@ -57,7 +40,7 @@ const Home = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               {/* <Text>{JSON.stringify(radicals)}</Text> */}
-              {radicals.map((radical) => renderRadicalCard(radical))}
+              {radicals.map((radical) => (<Flashcard key={radical.id} id={radical.id}/>))}
             </View>
             {/* <DefaultContent /> */}
           </View>
