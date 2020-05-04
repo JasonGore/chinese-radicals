@@ -1,86 +1,80 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
+  Button,
   ScrollView,
-  View,
+  StyleSheet,
   Text,
-  StatusBar,
+  View
 } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { Flashcard } from './components/Flashcard/Flashcard';
 import { radicals } from './radicals/radicals';
 
-const Home = () => {
+const Stack = createStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{title: 'Chinese Radicals'}}
+        />
+        <Stack.Screen name="Radicals" component={RadicalList} />
+        <Stack.Screen name="EnglishToRadical" component={NotCompleted} />
+        <Stack.Screen name="RadicalToEnglish" component={NotCompleted} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const NotCompleted = () => {
+  return <Text>Not Completed :(</Text>
+}
+
+// TODO: add screen navigation typing
+const Home = ({ navigation }: any) => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              {/* <Text>{JSON.stringify(radicals)}</Text> */}
-              {radicals.map((radical) => (<Flashcard key={radical.id} id={radical.id}/>))}
-            </View>
-            {/* <DefaultContent /> */}
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <View style={styles.sectionContainer}>
+        <Button
+          title="List of Radicals"
+          onPress={() => navigation.navigate('Radicals')}
+        />
+      </View>
+      <View style={styles.sectionContainer}>
+        <Button
+          title="Match English to Radical"
+          onPress={() => navigation.navigate('EnglishToRadical')}
+        />
+      </View>
+      <View style={styles.sectionContainer}>
+        <Button
+          title="Match Radical to English"
+          onPress={() => navigation.navigate('RadicalToEnglish')}
+        />
+      </View>
     </>
   );
 };
 
-const DefaultContent = () => {
+const RadicalList = () => {
   return (
-    <>
-      <Header/>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Step One</Text>
-        <Text style={styles.sectionDescription}>
-          Edit <Text style={styles.highlight}>App.tsx</Text> to change
-          this screen and then come back to see your edits.
-        </Text>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.scrollView}
+    >
+      <View style={styles.body}>
+        <View style={styles.sectionContainer}>
+          {radicals.map((radical) => (<Flashcard key={radical.id} id={radical.id}/>))}
+        </View>
       </View>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>See Your Changes</Text>
-        <Text style={styles.sectionDescription}>
-          <ReloadInstructions />
-        </Text>
-      </View>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Debug</Text>
-        <Text style={styles.sectionDescription}>
-          <DebugInstructions />
-        </Text>
-      </View>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Learn More</Text>
-        <Text style={styles.sectionDescription}>
-          Read the docs to discover what to do next:
-        </Text>
-      </View>
-      <LearnMoreLinks />
-    </>
+    </ScrollView>
   );
 };
 
@@ -88,39 +82,13 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
   body: {
     backgroundColor: Colors.white,
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 16,
     paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  }
 });
 
-export default Home;
+export default App;
