@@ -27,7 +27,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Flashcard } from './components/Flashcard/Flashcard';
-import { radicals } from './Radicals/Radicals';
+import { radicals } from './radicals/radicals';
 
 const Home = () => {
   return (
