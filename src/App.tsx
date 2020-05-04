@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Flashcard } from './Flashcard/Flashcard';
+import { Flashcard } from './components/Flashcard/Flashcard';
 import { radicals } from './Radicals/Radicals';
 
 const Home = () => {

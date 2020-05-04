@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native';
 
-import { radicals } from '../Radicals/Radicals';
+import { radicals } from '../../Radicals/Radicals';
 import { cardStyles } from './Flashcard.styles';
 
 export interface FlashcardProps {
