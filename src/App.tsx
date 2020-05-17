@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   ScrollView,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -11,7 +10,10 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { MatchScreen} from './MatchScreen';
+
 import { Flashcard } from './components/Flashcard/Flashcard';
+import { PickableFields, RadicalFieldPicker } from './components/RadicalFieldPicker/RadicalFieldPicker';
 import { radicals } from './radicals/radicals';
 
 const Stack = createStackNavigator();
@@ -22,23 +24,21 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={HomeScreen}
           options={{title: 'Chinese Radicals'}}
         />
-        <Stack.Screen name="Radicals" component={RadicalList} />
-        <Stack.Screen name="EnglishToRadical" component={NotCompleted} />
-        <Stack.Screen name="RadicalToEnglish" component={NotCompleted} />
+        <Stack.Screen name="Radicals" component={RadicalListScreen} />
+        <Stack.Screen name="Match" component={MatchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-const NotCompleted = () => {
-  return <Text>Not Completed :(</Text>
-}
-
 // TODO: add screen navigation typing
-const Home = ({ navigation }: any) => {
+const HomeScreen = ({ navigation }: any) => {
+  const [matchFrom, setMatchFrom] = useState<PickableFields>("english");
+  const [matchTo, setMatchTo] = useState<PickableFields>("traditional");
+
   return (
     <>
       <View style={styles.sectionContainer}>
@@ -47,23 +47,27 @@ const Home = ({ navigation }: any) => {
           onPress={() => navigation.navigate('Radicals')}
         />
       </View>
+      <RadicalFieldPicker 
+        default={matchFrom} 
+        label="Match"
+        onValueChange={itemValue => setMatchFrom(itemValue)}
+      />
+      <RadicalFieldPicker 
+        default={matchTo} 
+        label="to"
+        onValueChange={itemValue => setMatchTo(itemValue)}
+      />
       <View style={styles.sectionContainer}>
         <Button
-          title="Match English to Radical"
-          onPress={() => navigation.navigate('EnglishToRadical')}
-        />
-      </View>
-      <View style={styles.sectionContainer}>
-        <Button
-          title="Match Radical to English"
-          onPress={() => navigation.navigate('RadicalToEnglish')}
+          title="Match"
+          onPress={() => navigation.navigate('Match', { matchFrom, matchTo })}
         />
       </View>
     </>
   );
 };
 
-const RadicalList = () => {
+const RadicalListScreen = () => {
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"

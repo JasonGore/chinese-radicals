@@ -6,4 +6,6 @@ export interface Radical {
   strokeCount: number;
 }
 
+export type RadicalField = keyof Radical;
+
 export const radicals: Radical[] = require('./data/radicals');
